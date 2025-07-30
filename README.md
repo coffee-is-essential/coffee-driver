@@ -89,6 +89,8 @@ This driver library targets the following hardware:
 
 STA 모드 Wi-Fi를 초기화하기 위해서는 다음과 같이 초기화합니다
 
+To initialize STA mode Wi-Fi, initialize it like this:
+
 ```C++
 #include <wi-fi.hpp>
 
