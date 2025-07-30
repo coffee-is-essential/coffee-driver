@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include <Arduino.h>
-
 #include <FS.h>
 #include <SD.h>
 #include <SPI.h>

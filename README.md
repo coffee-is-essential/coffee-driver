@@ -7,7 +7,7 @@ ESP-IDF-based Elecrow CrowPanel driver library
 
 ## Display
 
-본 드라이버 라이브러리는 다음 하드웨어를 대상으로 합니다.
+본 드라이버 라이브러리는 다음 하드웨어를 대상으로 합니다
 
 This driver library targets the following hardware:
 
@@ -46,11 +46,11 @@ This driver library targets the following hardware:
 
 ## How to use
 
-1. ESP-IDF 프로젝트 디렉토리 내 `component` 디렉토리에 이 프로젝트를 추가합니다.
+1. ESP-IDF 프로젝트 디렉토리 내 `component` 디렉토리에 이 프로젝트를 추가합니다
 
-   Add this project to the `component` directory inside your ESP-IDF project directory.
+   Add this project to the `component` directory inside your ESP-IDF project directory
 
-2. 메인 디렉토리의 루트 CMakeLists에 다음과 같이 컴포넌트를 추가합니다.
+2. 메인 디렉토리의 루트 CMakeLists에 다음과 같이 컴포넌트를 추가합니다
 
    Add the component to the root CMakeLists in your main directory as follows:
 
@@ -61,7 +61,7 @@ This driver library targets the following hardware:
 
    ```
 
-3. 메인 소스에서 다음과 같이 [`driver.hpp`](./src/driver.hpp)를 통해 드라이버를 초기화합니다.
+3. 메인 소스에서 다음과 같이 [`driver.hpp`](./src/driver.hpp)를 통해 드라이버를 초기화합니다
 
    In the main source, initialize the driver via [`driver.hpp`](./src/driver.hpp) like this:
 
@@ -72,12 +72,11 @@ This driver library targets the following hardware:
 
    #define COFFEE_BAUD_RATE 115200
 
-   extern "C" void app_main(void)
-   {
+   extern "C" void app_main(void) {
        initArudino();
        Serial.begin(COFFEE_BAUD_RATE);
 
-       if(!coffee::init_drivers())
+       if (!coffee::init_drivers())
            return;
 
        // ...
@@ -86,18 +85,33 @@ This driver library targets the following hardware:
    ```
 
 
-### ESP-IDF Configuration
+### Wi-Fi
 
-프로젝트에 필요한 ESP-IDF 설정들은 [`sdkconfig`](./sdkconfig)에 모두 포함되어 있습니다.
+STA 모드 Wi-Fi를 초기화하기 위해서는 다음과 같이 초기화합니다
 
-The ESP-IDF settings required for the project are all contained in [`sdkconfig`](./sdkconfig).
+```C++
+#include <wi-fi.hpp>
+
+const char* ssid = ...;
+const char* pw = ...;
+
+extern "C" void app_main(void) {
+    // ...
+
+    if(!coffee::init_wifi_sta(ssid, pw))
+        return;
+
+    // ...
+}
+
+```
 
 
 ## Dependencies
 
-이 라이브러리를 사용하려면 다음 라이브러리들이 포함되어 있어야 합니다.
+이 라이브러리를 사용하려면 다음 라이브러리들이 포함되어 있어야 합니다
 
-The following libraries must be included to use this library.
+The following libraries must be included to use this library
 
 1. **arduino-esp32**
 

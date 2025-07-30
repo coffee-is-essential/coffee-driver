@@ -35,7 +35,7 @@ namespace coffee
         static lv_indev_drv_t indev_drv;
         
         if(!Wire.begin(COFFEE_GT911_SDA, COFFEE_GT911_SCL)) {
-            Serial.println("error: failed to initialize touch driver");
+            Serial.println("touch: failed to initialize touch driver");
             
             return false;
         }

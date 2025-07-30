@@ -5,6 +5,7 @@
 #include "display.hpp"
 #include "sd.hpp"
 #include "touch.hpp"
+#include "wi-fi.hpp"
 
 namespace coffee
 {

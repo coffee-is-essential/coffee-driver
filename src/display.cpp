@@ -104,7 +104,7 @@ namespace coffee
         // PCA9557 설정
         // configurates PCA9557
         if(!Wire.begin(19, 20)) {
-            Serial.println("error: failed to initialize IO pins");
+            Serial.println("display: failed to initialize IO pins");
             
             return false;
         }

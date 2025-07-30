@@ -85,7 +85,7 @@ namespace coffee
         SPI.begin(COFFEE_SD_SCK, COFFEE_SD_MISO, COFFEE_SD_MOSI, COFFEE_SD_CS);
 
         if(!SD.begin(COFFEE_SD_CS, SPI, COFFEE_SPI_CLK)) {
-            Serial.println("error: failed to initialize SD card driver");
+            Serial.println("sd: failed to initialize SD card driver");
 
             return false;
         }
