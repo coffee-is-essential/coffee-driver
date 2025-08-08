@@ -11,7 +11,7 @@ ESP-IDF-based Elecrow CrowPanel driver library
 
 This driver library targets the following hardware:
 
-- [**Elecrow - CrowPanel 7.0" -HMI ESP32 Display 800x480 RGB TFT LCD Touch Screen Compatible with Arduino/LVGL/ PlatformIO/Micropython-Without Acrylic Case**](https://www.elecrow.com/esp32-display-7-inch-hmi-display-rgb-tft-lcd-touch-screen-support-lvgl.html)
+- [**Elecrow - CrowPanel 7.0" -HMI ESP32 Display 800x480 RGB TFT LCD Touch Screen Compatible with Arduino/LVGL/PlatformIO/Micropython-Without Acrylic Case**](https://www.elecrow.com/esp32-display-7-inch-hmi-display-rgb-tft-lcd-touch-screen-support-lvgl.html)
 
   ![display.jpg](./assets/display.jpg)
 
@@ -46,6 +46,10 @@ This driver library targets the following hardware:
 
 ## How to use
 
+0. 하드웨어 사용 전 `menuconfig`를 통해 PSRAM(octal mode) 사용 설정 및 Arduino components 설정, FAT LFN 등을 설정합니다
+
+   Before using the hardware, configure PSRAM(octal mode) usage, Arduino components, FAT LFN, etc. through `menuconfig`
+
 1. ESP-IDF 프로젝트 디렉토리 내 `component` 디렉토리에 이 프로젝트를 추가합니다
 
    Add this project to the `component` directory inside your ESP-IDF project directory
@@ -76,8 +80,9 @@ This driver library targets the following hardware:
        initArudino();
        Serial.begin(COFFEE_BAUD_RATE);
 
-       if (!coffee::init_drivers())
-           return;
+       if (!coffee::init_drivers()) {
+           // ...
+       }
 
        // ...
    }
@@ -92,7 +97,7 @@ STA 모드 Wi-Fi를 초기화하기 위해서는 다음과 같이 초기화합�
 To initialize STA mode Wi-Fi, initialize it like this:
 
 ```C++
-#include <wi-fi.hpp>
+#include <wifi.hpp>
 
 const char* ssid = ...;
 const char* pw = ...;
@@ -115,43 +120,42 @@ extern "C" void app_main(void) {
 
 The following libraries must be included to use this library
 
-1. **arduino-esp32**
+- **espressif/arduino-esp32**
 
-   Arduino core for the ESP32
+  Arduino core for the ESP32
 
-   License: GNU Lesser General Public License Version 2.1
+  LGPL-2.1 license
 
-   https://github.com/espressif/arduino-esp32
+  [https://github.com/espressif/arduino-esp32](https://github.com/espressif/arduino-esp32)
 
-2. **gt911-arduino**
+- **TAMCTec/gt911-arduino**
 
-   Arduino library for GT911
+  Arduino library for GT911
 
-   License: Apache License Version 2.0
+  Apache-2.0 license
 
-   https://github.com/TAMCTec/gt911-arduino
+  [https://github.com/TAMCTec/gt911-arduino](https://github.com/TAMCTec/gt911-arduino)
 
-3. **LovyanGFX**
+- **lovyan03/LovyanGFX**
 
-   SPI LCD graphics library for ESP32 (ESP-IDF/ArduinoESP32) / ESP8266 (ArduinoESP8266) / SAMD51(Seeed ArduinoSAMD51)
+  SPI LCD graphics library for ESP32 (ESP-IDF/ArduinoESP32) / ESP8266 (ArduinoESP8266) / SAMD51(Seeed ArduinoSAMD51)
 
-   License: FreeBSD License
+  FreeBSD license
 
-   Includes: Adafruit_ILI9341(MIT License), Adafruit_GFX(BSD License), TFT_eSPI(FreeBSD License)
-   https://github.com/lovyan03/LovyanGFX
+  [https://github.com/lovyan03/LovyanGFX](https://github.com/lovyan03/LovyanGFX)
 
-4. **lvgl**
+- **lvgl/lvgl**
 
-   Embedded graphics library to create beautiful UIs for any MCU, MPU and display type.
+  Embedded graphics library to create beautiful UIs for any MCU, MPU and display type.
 
-   License: MIT License
+  MIT license
 
-   https://github.com/lvgl/lvgl
+  [https://github.com/lvgl/lvgl](https://github.com/lvgl/lvgl)
 
-5. **PCA9557**
+- **wgrs33/PCA9557**
 
-   Arduino library for PCA9557 I2C 8-bit IO Expander
+  Arduino library for PCA9557 I2C 8-bit IO Expander
 
-   License: MIT License
+  MIT license
 
-   https://github.com/wgrs33/PCA9557
+  [https://github.com/wgrs33/PCA9557](https://github.com/wgrs33/PCA9557)

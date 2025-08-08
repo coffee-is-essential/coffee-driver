@@ -1,4 +1,4 @@
-#include "wi-fi.hpp"
+#include "wifi.hpp"
 
 namespace coffee {
     extern "C" {

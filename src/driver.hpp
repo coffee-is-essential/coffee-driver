@@ -1,11 +1,12 @@
 #ifndef COFFEE_DRIVER_HPP
 #define COFFEE_DRIVER_HPP
 
+#include "config.h"
 #include "def.h"
 #include "display.hpp"
 #include "sd.hpp"
 #include "touch.hpp"
-#include "wi-fi.hpp"
+#include "wifi.hpp"
 
 namespace coffee
 {

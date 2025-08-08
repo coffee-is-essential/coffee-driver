@@ -8,6 +8,7 @@
 
 #include <lvgl.h>
 
+#include "config.h"
 #include "def.h"
 
 #define COFFEE_GT911
@@ -20,15 +21,6 @@
 #define COFFEE_MAP_X2 0
 #define COFFEE_MAP_Y1 480
 #define COFFEE_MAP_Y2 0
-
-/**
- * @def COFFEE_PRINT_TOUCH
- * 
- * @brief 터치 이벤트가 발생할 때마다 터치 위치를 출력하려면 이 값을 1로 설정합니다
- * 
- *        set this value to 1 to print the touch position whenever a touch event occurs
- */
-#define COFFEE_PRINT_TOUCH 0
 
 namespace coffee
 {

@@ -4,7 +4,8 @@
 #include <Arduino.h>
 #include <WiFi.h>
 
-#define COFFEE_WIFI_TIMEOUT_MS 10000
+#include "config.h"
+#include "def.h"
 
 namespace coffee {
     extern "C" {
