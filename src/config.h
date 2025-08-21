@@ -8,21 +8,25 @@
  */
 
 /**
- * @def COFFEE_DISP_BUF_BLOCKS
+ * @def COFFEE_DISP_BUF_LINES
  * 
- * @brief lvgl은 디스플레이에 표시할 이미지를 버퍼 크기로 나누어서 표현합니다
+ * @brief 이 드라이버는 디스플레이에 표시할 이미지를 버퍼 크기로 나누어 전송합니다
  * 
- *        때문에 이 버퍼 블록 크기가 적을 수록 더 부드러운 표현이 가능하지만, 메모리가 부족할 수 있습니다
+ *        버퍼에 담을 라인 수가 클수록 화면 갱신이 더 부드러울 수 있지만 RAM 사용량이 증가합니다
  * 
- *        실행 중 화면이 흔들리거나 깜빡거리는 현상이 발생하면 이 값을 더 크게 조정하세요
+ *        실행 중 화면이 흔들리거나 깜빡거린다면 이 값을 더 작게 조정하세요
  * 
- *        lvgl represents the image to be shown on the display by dividing it by the buffer size
+ *        라인 수는 화면 높이의 약수로 설정하는 것을 권장합니다
  * 
- *        so having fewer of these blocks to determine the size of the buffer allows for a smoother representation, but may run out of memory
+ *        this driver splits the image to be displayed into chunks based on the buffer size
  * 
- *        if you experience screen shaking or flickering while running, adjust this value to a larger value
+ *        a larger number of lines per buffer can yield smoother updates, but increases RAM usage
+ * 
+ *        if you observe tearing or flickering at runtime, reduce this value
+ * 
+ *        it is recommended to set the line count to a divisor of the display height
  */
-#define COFFEE_DISP_BUF_BLOCKS 8
+#define COFFEE_DISP_BUF_LINES 40
 
 /**
  * @def COFFEE_BRIGHTNESS

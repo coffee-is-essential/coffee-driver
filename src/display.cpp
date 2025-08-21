@@ -20,7 +20,8 @@ namespace coffee
 
     // 화면에 실제 그려질 픽셀 색 정보 배열
     // the array of pixel color values to be drawn
-    static lv_color_t* pixels = nullptr;
+    static lv_color_t* pixel_buf1 = nullptr;
+    static lv_color_t* pixel_buf2 = nullptr;
 
     LCD::LCD(void)
     {
@@ -142,12 +143,22 @@ namespace coffee
 
         lcd.setTextSize(3);
 
-        uint32_t pixel_size = COFFEE_WIDTH * COFFEE_HEIGHT / COFFEE_DISP_BUF_BLOCKS;
+        uint32_t buf_size = COFFEE_WIDTH *  COFFEE_DISP_BUF_LINES;
 
         // 화면 버퍼는 내부 메모리 상 DMA 영역에 할당
         // the screen buffer is allocated in a DMA area on internal memory
-        pixels = (lv_color_t*) heap_caps_malloc(sizeof(lv_color_t) * pixel_size, MALLOC_CAP_DMA);
-        if(!pixels) {
+        pixel_buf1 = (lv_color_t*) heap_caps_malloc(sizeof(lv_color_t) * buf_size, MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
+        if(!pixel_buf1) {
+            Serial.println("error: failed to allocate display buffer");
+            
+            return false;
+        }
+
+        pixel_buf2 = (lv_color_t*) heap_caps_malloc(sizeof(lv_color_t) * buf_size, MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
+        if(!pixel_buf2) {
+            heap_caps_free(pixel_buf1);
+            pixel_buf1 = nullptr;
+
             Serial.println("error: failed to allocate display buffer");
             
             return false;
@@ -155,7 +166,7 @@ namespace coffee
         
         lv_init();
 
-        lv_disp_draw_buf_init(&draw_buf, pixels, NULL, pixel_size);
+        lv_disp_draw_buf_init(&draw_buf, pixel_buf1, pixel_buf2, buf_size);
 
         lv_disp_drv_init(&disp_drv);
 
@@ -185,12 +196,14 @@ namespace coffee
         lcd.fillScreen(TFT_BLACK);
     }
 
-    static void flush_disp(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_t* pixels)
+    static void flush_disp(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_t* pixel_buf)
     {
-        int32_t img_w = area->x2 - area->x1 + 1;
-        int32_t img_h = area->y2 - area->y1 + 1;
+        const int32_t img_w = area->x2 - area->x1 + 1;
+        const int32_t img_h = area->y2 - area->y1 + 1;
 
-        lcd.pushImageDMA(area->x1, area->y1, img_w, img_h, (lgfx::rgb565_t*) &pixels->full);
+        const lgfx::rgb565_t* pixel_src = reinterpret_cast<const lgfx::rgb565_t*>(pixel_buf);
+        lcd.pushImageDMA(area->x1, area->y1, img_w, img_h, pixel_src);
+        lcd.waitDMA();
 
         lv_disp_flush_ready(disp_drv);
     }
