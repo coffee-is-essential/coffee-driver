@@ -16,8 +16,7 @@
 
 #include <PCA9557.h>
 
-#include "config.h"
-#include "def.h"
+#include "config.hpp"
 
 #define COFFEE_BACKLIGHT 2
 

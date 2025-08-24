@@ -13,8 +13,10 @@ namespace coffee
         if(!init_touch())
             return false;
 
+#if COFFEE_SD_USE
         if(!init_sd(COFFEE_FS_LETTER))
             return false;
+#endif
 
         return true;
     }

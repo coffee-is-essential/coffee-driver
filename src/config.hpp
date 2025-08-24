@@ -1,6 +1,18 @@
 #ifndef COFFEE_DRIVER_CONFIG_H
 #define COFFEE_DRIVER_CONFIG_H
 
+/**
+ * @def COFFEE_WIDTH
+ * 
+ * @def COFFEE_HEIGHT
+ * 
+ * @brief LCD 화면의 크기 정보
+ * 
+ *        dimensions of the LCD display
+ */
+#define COFFEE_WIDTH 800
+#define COFFEE_HEIGHT 480
+
 /* 
    디스플레이 설정
 
@@ -14,19 +26,11 @@
  * 
  *        버퍼에 담을 라인 수가 클수록 화면 갱신이 더 부드러울 수 있지만 RAM 사용량이 증가합니다
  * 
- *        실행 중 화면이 흔들리거나 깜빡거린다면 이 값을 더 작게 조정하세요
- * 
- *        라인 수는 화면 높이의 약수로 설정하는 것을 권장합니다
- * 
  *        this driver splits the image to be displayed into chunks based on the buffer size
  * 
  *        a larger number of lines per buffer can yield smoother updates, but increases RAM usage
- * 
- *        if you observe tearing or flickering at runtime, reduce this value
- * 
- *        it is recommended to set the line count to a divisor of the display height
  */
-#define COFFEE_DISP_BUF_LINES 40
+#define COFFEE_DISP_BUF_LINES 50
 
 /**
  * @def COFFEE_BRIGHTNESS
@@ -43,6 +47,15 @@
    
    SD card configurations
  */
+
+ /**
+  * @brief COFFEE_SD_USE
+  * 
+  * @brief SD 카드를 사용할 예정이라면 이 값을 1로 바꾸어 SD 초기화를 포함합니다
+  * 
+  *        set this value to 1 to include SD initialization if an SD card is intended to be used
+  */
+#define COFFEE_SD_USE 1
 
 /**
  * @def COFFEE_SPI_CLK
@@ -64,7 +77,7 @@
  * 
  *        set this value to 1 to print a list of all files on the SD card when it is initialized
  */
-#define COFFEE_LIST_FILES 1
+#define COFFEE_LIST_FILES 0
 
 /**
  * @def COFFEE_FS_LETTER

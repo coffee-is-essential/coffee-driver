@@ -8,8 +8,7 @@
 
 #include <lvgl.h>
 
-#include "config.h"
-#include "def.h"
+#include "config.hpp"
 
 #define COFFEE_GT911
 #define COFFEE_GT911_SCL 20

@@ -10,8 +10,7 @@
 
 #include <lvgl.h>
 
-#include "config.h"
-#include "def.h"
+#include "config.hpp"
 
 #define COFFEE_SD_CS 10
 #define COFFEE_SD_MOSI 11
