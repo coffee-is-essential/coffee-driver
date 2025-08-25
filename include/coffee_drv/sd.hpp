@@ -1,7 +1,10 @@
-#ifndef COFFEE_SD_HPP
-#define COFFEE_SD_HPP
+#ifndef COFFEE_DRV_SD_HPP
+#define COFFEE_DRV_SD_HPP
 
-#include <string.h>
+#include <cstring>
+
+#include <freertos/FreeRTOS.h>
+#include <freertos/semphr.h>
 
 #include <Arduino.h>
 #include <FS.h>
@@ -10,14 +13,14 @@
 
 #include <lvgl.h>
 
-#include "config.hpp"
+#include "coffee_drv/config.hpp"
 
-#define COFFEE_SD_CS 10
-#define COFFEE_SD_MOSI 11
-#define COFFEE_SD_SCK 12
-#define COFFEE_SD_MISO 13
+#define COFFEE_DRV_SD_CS 10
+#define COFFEE_DRV_SD_MOSI 11
+#define COFFEE_DRV_SD_SCK 12
+#define COFFEE_DRV_SD_MISO 13
 
-namespace coffee
+namespace coffee_drv
 {
     /**
      * @brief SD 카드를 초기화합니다
@@ -59,5 +62,7 @@ namespace coffee
      *              depth of the directory
      */
     void list_dir(File& root, const char* dir_name, uint8_t depth = 0);
+
+    extern SemaphoreHandle_t sd_mutex;
 }
 #endif

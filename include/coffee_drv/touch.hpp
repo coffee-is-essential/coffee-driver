@@ -1,5 +1,5 @@
-#ifndef COFFEE_TOUCH_HPP
-#define COFFEE_TOUCH_HPP
+#ifndef COFFEE_DRV_TOUCH_HPP
+#define COFFEE_DRV_TOUCH_HPP
 
 #include <Arduino.h>
 #include <Wire.h>
@@ -8,20 +8,20 @@
 
 #include <lvgl.h>
 
-#include "config.hpp"
+#include "coffee_drv/config.hpp"
 
-#define COFFEE_GT911
-#define COFFEE_GT911_SCL 20
-#define COFFEE_GT911_SDA 19
-#define COFFEE_GT911_INT 3
-#define COFFEE_GT911_RST 4
-#define COFFEE_GT911_ROTATION ROTATION_NORMAL
-#define COFFEE_MAP_X1 800
-#define COFFEE_MAP_X2 0
-#define COFFEE_MAP_Y1 480
-#define COFFEE_MAP_Y2 0
+#define COFFEE_DRV_GT911
+#define COFFEE_DRV_GT911_SCL 20
+#define COFFEE_DRV_GT911_SDA 19
+#define COFFEE_DRV_GT911_INT 3
+#define COFFEE_DRV_GT911_RST 4
+#define COFFEE_DRV_GT911_ROTATION ROTATION_NORMAL
+#define COFFEE_DRV_MAP_X1 800
+#define COFFEE_DRV_MAP_X2 0
+#define COFFEE_DRV_MAP_Y1 480
+#define COFFEE_DRV_MAP_Y2 0
 
-namespace coffee
+namespace coffee_drv
 {
     /**
      * @brief 마지막으로 터치된 위치의 X 좌표

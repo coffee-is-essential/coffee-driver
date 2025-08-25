@@ -1,5 +1,5 @@
-#ifndef COFFEE_DISPLAY_HPP
-#define COFFEE_DISPLAY_HPP
+#ifndef COFFEE_DRV_DISPLAY_HPP
+#define COFFEE_DRV_DISPLAY_HPP
 
 #include <driver/i2c.h>
 #include <esp_heap_caps.h>
@@ -16,11 +16,11 @@
 
 #include <PCA9557.h>
 
-#include "config.hpp"
+#include "coffee_drv/config.hpp"
 
-#define COFFEE_BACKLIGHT 2
+#define COFFEE_DRV_BACKLIGHT 2
 
-namespace coffee
+namespace coffee_drv
 {
     class LCD: public lgfx::LGFX_Device
     {

@@ -1,6 +1,6 @@
-#include "display.hpp"
+#include "coffee_drv/display.hpp"
 
-namespace coffee
+namespace coffee_drv
 {
     /**
      * @brief 백라이트를 켭니다
@@ -29,10 +29,10 @@ namespace coffee
             // 패널 기본 정보 설정
             // set panel preferences
             auto cfg = _panel.config();
-            cfg.memory_width = COFFEE_WIDTH;
-            cfg.memory_height = COFFEE_HEIGHT;
-            cfg.panel_width = COFFEE_WIDTH;
-            cfg.panel_height = COFFEE_HEIGHT;
+            cfg.memory_width = COFFEE_DRV_WIDTH;
+            cfg.memory_height = COFFEE_DRV_HEIGHT;
+            cfg.panel_width = COFFEE_DRV_WIDTH;
+            cfg.panel_height = COFFEE_DRV_HEIGHT;
             cfg.offset_x = 0;
             cfg.offset_y = 0;
             _panel.config(cfg);
@@ -143,7 +143,7 @@ namespace coffee
 
         lcd.setTextSize(3);
 
-        uint32_t buf_size = COFFEE_WIDTH *  COFFEE_DISP_BUF_LINES;
+        uint32_t buf_size = COFFEE_DRV_WIDTH *  COFFEE_DRV_DISP_BUF_LINES;
 
         // 화면 버퍼는 내부 메모리 상 DMA 영역에 할당
         // the screen buffer is allocated in a DMA area on internal memory
@@ -186,12 +186,12 @@ namespace coffee
     {
         ledcSetup(1, 300, 8);
 
-        ledcAttachPin(COFFEE_BACKLIGHT, 1);
+        ledcAttachPin(COFFEE_DRV_BACKLIGHT, 1);
         
         ledcWrite(1, 0);
         delay(500);
         
-        ledcWrite(1, COFFEE_BRIGHTNESS);
+        ledcWrite(1, COFFEE_DRV_BRIGHTNESS);
 
         lcd.fillScreen(TFT_BLACK);
     }

@@ -1,6 +1,6 @@
-#include "utility.hpp"
+#include "coffee_drv/utility.hpp"
 
-namespace coffee {
+namespace coffee_drv {
     /**
      * @brief 현재 사용 가능한 메모리 양을 시리얼 통신으로 출력합니다
      * 

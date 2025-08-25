@@ -1,14 +1,14 @@
-#ifndef COFFEE_DRIVER_HPP
-#define COFFEE_DRIVER_HPP
+#ifndef COFFEE_DRV_INIT_HPP
+#define COFFEE_DRV_INIT_HPP
 
-#include "config.hpp"
-#include "display.hpp"
-#include "sd.hpp"
-#include "touch.hpp"
-#include "utility.hpp"
-#include "wifi.hpp"
+#include <Arduino.h>
 
-namespace coffee
+#include "coffee_drv/config.hpp"
+#include "coffee_drv/display.hpp"
+#include "coffee_drv/sd.hpp"
+#include "coffee_drv/touch.hpp"
+
+namespace coffee_drv
 {
     /**
      * @brief 디스플레이 운용을 위한 각종 드라이버를 초기화합니다

@@ -1,12 +1,12 @@
-#ifndef COFFEE_WIFI_HPP
-#define COFFEE_WIFI_HPP
+#ifndef COFFEE_DRV_WIFI_HPP
+#define COFFEE_DRV_WIFI_HPP
 
 #include <Arduino.h>
 #include <WiFi.h>
 
-#include "config.hpp"
+#include "coffee_drv/config.hpp"
 
-namespace coffee {
+namespace coffee_drv {
     /**
      * @brief STA 모드 Wi-Fi를 초기화합니다
      * 

@@ -1,7 +1,6 @@
-#include "touch.hpp"
+#include "coffee_drv/touch.hpp"
 
-namespace coffee
-{
+namespace coffee_drv {
     /**
      * @brief GT911을 통해 터치를 감지하면 마지막으로 터치된 위치를 last_x와 last_y에 저장합니다
      * 
@@ -26,7 +25,7 @@ namespace coffee
     
     // 터치 제어를 위한 GT911 드라이버
     // GT911 driver for touch control
-    static TAMC_GT911 touch = TAMC_GT911(COFFEE_GT911_SDA, COFFEE_GT911_SCL, COFFEE_GT911_INT, COFFEE_GT911_RST, max(COFFEE_MAP_X1, COFFEE_MAP_X2), max(COFFEE_MAP_Y1, COFFEE_MAP_Y2));
+    static TAMC_GT911 touch = TAMC_GT911(COFFEE_DRV_GT911_SDA, COFFEE_DRV_GT911_SCL, COFFEE_DRV_GT911_INT, COFFEE_DRV_GT911_RST, max(COFFEE_DRV_MAP_X1, COFFEE_DRV_MAP_X2), max(COFFEE_DRV_MAP_Y1, COFFEE_DRV_MAP_Y2));
 
     bool init_touch(void)
     {
@@ -34,7 +33,7 @@ namespace coffee
         // lvgl touch driver
         static lv_indev_drv_t indev_drv;
         
-        if(!Wire.begin(COFFEE_GT911_SDA, COFFEE_GT911_SCL)) {
+        if(!Wire.begin(COFFEE_DRV_GT911_SDA, COFFEE_DRV_GT911_SCL)) {
             Serial.println("touch: failed to initialize touch driver");
             
             return false;
@@ -42,7 +41,7 @@ namespace coffee
 
         touch.begin();
         
-        touch.setRotation(COFFEE_GT911_ROTATION);
+        touch.setRotation(COFFEE_DRV_GT911_ROTATION);
 
         lv_indev_drv_init(&indev_drv);
         
@@ -59,8 +58,8 @@ namespace coffee
         touch.read();
 
         if(touch.isTouched) {
-            last_x = map(touch.points[0].x, COFFEE_MAP_X1, COFFEE_MAP_X2, 0, COFFEE_WIDTH - 1);
-            last_y = map(touch.points[0].y, COFFEE_MAP_Y1, COFFEE_MAP_Y2, 0, COFFEE_HEIGHT - 1);
+            last_x = map(touch.points[0].x, COFFEE_DRV_MAP_X1, COFFEE_DRV_MAP_X2, 0, COFFEE_DRV_WIDTH - 1);
+            last_y = map(touch.points[0].y, COFFEE_DRV_MAP_Y1, COFFEE_DRV_MAP_Y2, 0, COFFEE_DRV_HEIGHT - 1);
 
             return true;
         } else
@@ -75,7 +74,7 @@ namespace coffee
             indev_data->point.x = last_x;
             indev_data->point.y = last_y;
 
-#if COFFEE_PRINT_TOUCH
+#if COFFEE_DRV_PRINT_TOUCH
             Serial.print("touch X: ");
             Serial.print(indev_data->point.x);
 

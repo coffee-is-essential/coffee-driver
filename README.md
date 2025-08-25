@@ -61,18 +61,19 @@ This driver library targets the following hardware:
    ```CMakeLists
    idf_component_register(SRCS "main.cpp"
        INCLUDE_DIRS "."
-       REQUIRES arduino-esp32 coffee-driver)
+       REQUIRES arduino-esp32
+           coffee-driver)
 
    ```
 
-3. 메인 소스에서 다음과 같이 [`driver.hpp`](./src/driver.hpp)를 통해 드라이버를 초기화합니다
+3. 메인 소스에서 다음과 같이 [`coffee_drv/init.hpp`](./include/coffee_drv/init.hpp)를 통해 드라이버를 초기화합니다
 
-   In the main source, initialize the driver via [`driver.hpp`](./src/driver.hpp) like this:
+   In the main source, initialize the driver via [`coffee_drv/init.hpp`](./include/coffee_drv/init.hpp) like this:
 
    ```C++
    #include <Arduino.h>
 
-   #include <driver.hpp>
+   #include <coffee_drv/init.hpp>
 
    #define COFFEE_BAUD_RATE 115200
 
@@ -80,7 +81,7 @@ This driver library targets the following hardware:
        initArudino();
        Serial.begin(COFFEE_BAUD_RATE);
 
-       if (!coffee::init_drivers()) {
+       if (!coffee_drv::init_drivers()) {
            // ...
        }
 
@@ -97,7 +98,7 @@ STA 모드 Wi-Fi를 초기화하기 위해서는 다음과 같이 초기화합�
 To initialize STA mode Wi-Fi, initialize it like this:
 
 ```C++
-#include <wifi.hpp>
+#include <coffee_drv/wifi.hpp>
 
 const char* ssid = ...;
 const char* pw = ...;
@@ -105,7 +106,7 @@ const char* pw = ...;
 extern "C" void app_main(void) {
     // ...
 
-    if(!coffee::init_wifi_sta(ssid, pw))
+    if(!coffee_drv::init_wifi_sta(ssid, pw))
         return;
 
     // ...

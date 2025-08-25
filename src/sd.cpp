@@ -1,7 +1,6 @@
-#include "sd.hpp"
+#include "coffee_drv/sd.hpp"
 
-namespace coffee
-{
+namespace coffee_drv {
     /**
      * @brief lvgl에서 관리되는 파일 시스템을 현재 사용중인 Arduino 파일 시스템과 연동합니다
      * 
@@ -82,9 +81,9 @@ namespace coffee
 
     bool init_sd(char fs_letter)
     {
-        SPI.begin(COFFEE_SD_SCK, COFFEE_SD_MISO, COFFEE_SD_MOSI, COFFEE_SD_CS);
+        SPI.begin(COFFEE_DRV_SD_SCK, COFFEE_DRV_SD_MISO, COFFEE_DRV_SD_MOSI, COFFEE_DRV_SD_CS);
 
-        if(!SD.begin(COFFEE_SD_CS, SPI, COFFEE_SPI_CLK)) {
+        if(!SD.begin(COFFEE_DRV_SD_CS, SPI, COFFEE_DRV_SPI_CLK)) {
             Serial.println("sd: failed to initialize SD card driver");
 
             return false;
@@ -93,7 +92,7 @@ namespace coffee
         if(!init_lv_fs(fs_letter))
             return false;
 
-#if COFFEE_LIST_FILES
+#if COFFEE_DRV_LIST_FILES
         list_all();
 #endif
 
@@ -102,7 +101,7 @@ namespace coffee
 
     void list_all(void)
     {
-        Serial.printf("files in SD card: %c:", COFFEE_FS_LETTER);
+        Serial.printf("files in SD card: %c:", COFFEE_DRV_FS_LETTER);
 
         File root = SD.open("/");
         list_dir(root, "");
