@@ -75,11 +75,9 @@ This driver library targets the following hardware:
 
    #include <coffee_drv/init.hpp>
 
-   #define COFFEE_BAUD_RATE 115200
-
    extern "C" void app_main(void) {
        initArudino();
-       Serial.begin(COFFEE_BAUD_RATE);
+       Serial.begin(115200);
 
        if (!coffee_drv::init_drivers()) {
            // ...
