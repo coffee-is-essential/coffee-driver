@@ -2,9 +2,9 @@
 #define COFFEE_DRV_CONFIG_H
 
 /**
- * @def COFFEE_WIDTH
+ * @def COFFEE_DRV_WIDTH
  * 
- * @def COFFEE_HEIGHT
+ * @def COFFEE_DRV_HEIGHT
  * 
  * @brief LCD 화면의 크기 정보
  * 
@@ -14,18 +14,6 @@
 #define COFFEE_DRV_WIDTH 800
 #define COFFEE_DRV_HEIGHT 480
 
-/**
- * @def COFFEE_WIDTH
- * 
- * @def COFFEE_HEIGHT
- * 
- * @brief LCD 화면의 크기 정보
- * 
- *        dimensions of the LCD display
- */
-#define COFFEE_WIDTH 800
-#define COFFEE_HEIGHT 480
-
 /* 
    디스플레이 설정
 
@@ -33,7 +21,7 @@
  */
 
 /**
- * @def COFFEE_DISP_BUF_LINES
+ * @def COFFEE_DRV_DISP_BUF_LINES
  * 
  * @brief 이 드라이버는 디스플레이에 표시할 이미지를 버퍼 크기로 나누어 전송합니다
  * 
@@ -43,14 +31,10 @@
  * 
  *        a larger number of lines per buffer can yield smoother updates, but increases RAM usage
  */
-<<<<<<<< HEAD:include/coffee_drv/config.hpp
 #define COFFEE_DRV_DISP_BUF_LINES 50
-========
-#define COFFEE_DISP_BUF_LINES 50
->>>>>>>> 960e2b8f931559bcf00d9f9962fef2e45777ae34:src/config.hpp
 
 /**
- * @def COFFEE_BRIGHTNESS
+ * @def COFFEE_DRV_BRIGHTNESS
  * 
  * @brief 이 값을 수정하여 화면 밝기를 조절할 수 있습니다(0-255)
  * 
@@ -66,20 +50,16 @@
  */
 
  /**
-  * @brief COFFEE_SD_USE
+  * @brief COFFEE_DRV_SD_USE
   * 
   * @brief SD 카드를 사용할 예정이라면 이 값을 1로 바꾸어 SD 초기화를 포함합니다
   * 
   *        set this value to 1 to include SD initialization if an SD card is intended to be used
   */
-<<<<<<<< HEAD:include/coffee_drv/config.hpp
 #define COFFEE_DRV_SD_USE 1
-========
-#define COFFEE_SD_USE 1
->>>>>>>> 960e2b8f931559bcf00d9f9962fef2e45777ae34:src/config.hpp
 
 /**
- * @def COFFEE_SPI_CLK
+ * @def COFFEE_DRV_SPI_CLK
  * 
  * @brief ESP32는 SPI 클록을 최대 80MHz까지 지원하지만, 불안정할 수 있습니다
  * 
@@ -92,20 +72,16 @@
 #define COFFEE_DRV_SPI_CLK 80000000
 
 /**
- * @def COFFEE_LIST_FILES
+ * @def COFFEE_DRV_LIST_FILES
  * 
  * @brief SD 카드가 초기화될 때, SD 카드 내 모든 파일 목록을 출력하려면 이 값을 1로 설정합니다
  * 
  *        set this value to 1 to print a list of all files on the SD card when it is initialized
  */
-<<<<<<<< HEAD:include/coffee_drv/config.hpp
 #define COFFEE_DRV_LIST_FILES 0
-========
-#define COFFEE_LIST_FILES 0
->>>>>>>> 960e2b8f931559bcf00d9f9962fef2e45777ae34:src/config.hpp
 
 /**
- * @def COFFEE_FS_LETTER
+ * @def COFFEE_DRV_FS_LETTER
  * 
  * @brief lvgl 드라이버 식별 문자(대문자 알파벳)
  * 
@@ -121,7 +97,7 @@
  */
 
 /**
- * @def COFFEE_PRINT_TOUCH
+ * @def COFFEE_DRV_PRINT_TOUCH
  * 
  * @brief 터치 이벤트가 발생할 때마다 터치 위치를 출력하려면 이 값을 1로 설정합니다
  * 
@@ -137,7 +113,7 @@
  */
 
 /**
- * @def COFFEE_WIFI_TIMEOUT_MS
+ * @def COFFEE_DRV_WIFI_TIMEOUT_MS
  * 
  * @brief Wi-Fi 연결에 사용되는 타임 아웃 시간을 ms 단위로 설정합니다
  * 
