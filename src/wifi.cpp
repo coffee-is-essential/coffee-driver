@@ -16,7 +16,8 @@ namespace coffee_drv {
             Serial.print(".");
 
             if (millis() - start > COFFEE_DRV_WIFI_TIMEOUT_MS) {
-                Serial.println("\nwifi: connection failed(timeout)");
+                Serial.println("\n");
+                Serial.println("wifi: connection failed(timeout)");
                 WiFi.disconnect(true, true);
 
                 return false;
