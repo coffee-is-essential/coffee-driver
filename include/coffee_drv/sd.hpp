@@ -2,9 +2,7 @@
 #define COFFEE_DRV_SD_HPP
 
 #include <cstring>
-
-#include <freertos/FreeRTOS.h>
-#include <freertos/semphr.h>
+#include <string>
 
 #include <Arduino.h>
 #include <FS.h>
@@ -61,8 +59,6 @@ namespace coffee_drv
      * 
      *              depth of the directory
      */
-    void list_dir(File& root, const char* dir_name, uint8_t depth = 0);
-
-    extern SemaphoreHandle_t sd_mutex;
+    void list_dir(File& root, std::string dir_name, uint8_t depth = 0);
 }
 #endif

@@ -19,11 +19,16 @@
 #include "coffee_drv/config.hpp"
 
 #define COFFEE_DRV_BACKLIGHT 2
+#define COFFEE_DRV_BACKLIGHT_CH 1
 
 namespace coffee_drv
 {
-    class LCD: public lgfx::LGFX_Device
-    {
+    /**
+     * @brief 화면 제어를 위한 클래스
+     * 
+     *        class for controlling the LCD screen
+     */
+    class LCD: public lgfx::LGFX_Device {
     public:
         lgfx::Panel_RGB _panel;
 
@@ -60,5 +65,19 @@ namespace coffee_drv
      *         LCD initialization success
      */
     bool init_lcd(void);
+
+    /**
+     * @brief 화면을 끕니다
+     * 
+     *        turns off the LCD screen
+     */
+    void turn_off_lcd(void);
+
+    /**
+     * @brief 화면을 켭니다
+     * 
+     *        turns on the LCD screen
+     */
+    void turn_on_lcd(void);
 }
 #endif

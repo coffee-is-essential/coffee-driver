@@ -3,21 +3,33 @@
 namespace coffee_drv {
     bool init_drivers(void)
     {
-        if(!init_IO())
-            return false;
+        if(!init_IO()) {
+            Serial.println("[coffee_drv/init][error] initialization complete");
 
-        if(!init_lcd())
             return false;
+        }
 
-        if(!init_touch())
+        if(!init_lcd()) {
+            Serial.println("[coffee_drv/init][error] initialization complete");
+
             return false;
+        }
+
+        if(!init_touch()) {
+            Serial.println("[coffee_drv/init][error] initialization complete");
+
+            return false;
+        }
 
 #if COFFEE_DRV_SD_USE
-        if(!init_sd(COFFEE_DRV_FS_LETTER))
+        if(!init_sd(COFFEE_DRV_FS_LETTER)) {
+            Serial.println("[coffee_drv/init][error] initialization complete");
+
             return false;
+        }
 #endif
 
-        Serial.println("init: driver initialization complete");
+        Serial.println("[coffee_drv/init][info] initialization complete");
 
         return true;
     }

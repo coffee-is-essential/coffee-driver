@@ -84,7 +84,7 @@ namespace coffee_drv {
         SPI.begin(COFFEE_DRV_SD_SCK, COFFEE_DRV_SD_MISO, COFFEE_DRV_SD_MOSI, COFFEE_DRV_SD_CS);
 
         if(!SD.begin(COFFEE_DRV_SD_CS, SPI, COFFEE_DRV_SPI_CLK)) {
-            Serial.println("sd: failed to initialize SD card driver");
+            Serial.println("[coffee_drv/sd][error] failed to initialize SD card driver...");
 
             return false;
         }
@@ -95,6 +95,8 @@ namespace coffee_drv {
 #if COFFEE_DRV_LIST_FILES
         list_all();
 #endif
+
+        Serial.println("[coffee_drv/sd][info] SD card initialization success!");
 
         return true;
     }
@@ -107,25 +109,25 @@ namespace coffee_drv {
         list_dir(root, "");
     }
 
-    void list_dir(File& root, const char* dir_name, uint8_t depth)
+    void list_dir(File& root, std::string dir_name, uint8_t depth)
     {
         if(!root || !root.isDirectory()) {
-            Serial.printf("error: not a directory, or cannot be opened(%s)\n", dir_name);
+            Serial.printf("[coffee_drv/sd][error] not a directory, or cannot be opened(%s)\n", dir_name.c_str());
 
             return;
         }
 
-        Serial.printf("%*s%s/\n", depth * 4, "", dir_name);
+        Serial.printf("%*s%s/\n", depth * 4, "", dir_name.c_str());
 
         File file = root.openNextFile();
 
         while (file) {
-            const char* file_name = file.name();
+            std::string file_name = file.name();
 
             if(file.isDirectory())
                 list_dir(file, file_name, depth + 1);
             else
-                Serial.printf("%*s%s(%dB)\n", (depth + 1) * 4, "", file_name, file.size());
+                Serial.printf("%*s%s(%dB)\n", (depth + 1) * 4, "", file_name.c_str(), file.size());
 
             file = root.openNextFile();
         }
@@ -138,7 +140,7 @@ namespace coffee_drv {
         static lv_fs_drv_t drv;
 
         if(fs_letter < 'A' || fs_letter > 'Z') {
-            Serial.println("error: the file driver identification character must be an uppercase alphabet");
+            Serial.println("[coffee_drv/sd][error] the file driver identification character must be an uppercase alphabet");
 
             return false;
         }

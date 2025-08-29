@@ -105,7 +105,7 @@ namespace coffee_drv
         // PCA9557 설정
         // configurates PCA9557
         if(!Wire.begin(19, 20)) {
-            Serial.println("display: failed to initialize IO pins");
+            Serial.println("[coffee_drv/display][error] failed to initialize IO pins...");
             
             return false;
         }
@@ -121,6 +121,8 @@ namespace coffee_drv
         delay(100);
         pca9557.setMode(IO1, IO_INPUT);
 
+        Serial.println("[coffee_drv/display][info] IO initialization success!");
+
         return true;
     }
 
@@ -135,7 +137,7 @@ namespace coffee_drv
         static lv_disp_draw_buf_t draw_buf;
 
         if(!lcd.begin()) {
-            Serial.println("error: failed to initialize LCD driver");
+            Serial.println("[coffee_drv/display][error] failed to initialize LCD driver...");
 
             return false;
         }
@@ -149,7 +151,7 @@ namespace coffee_drv
         // the screen buffer is allocated in a DMA area on internal memory
         pixel_buf1 = (lv_color_t*) heap_caps_malloc(sizeof(lv_color_t) * buf_size, MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
         if(!pixel_buf1) {
-            Serial.println("error: failed to allocate display buffer");
+            Serial.println("[coffee_drv/display][error] failed to allocate display buffer...");
             
             return false;
         }
@@ -159,7 +161,7 @@ namespace coffee_drv
             heap_caps_free(pixel_buf1);
             pixel_buf1 = nullptr;
 
-            Serial.println("error: failed to allocate display buffer");
+            Serial.println("[coffee_drv/display][error] failed to allocate display buffer...");
             
             return false;
         }
@@ -179,19 +181,29 @@ namespace coffee_drv
 
         turn_on_bl();
 
+        Serial.println("[coffee_drv/display][info] display initialization success!");
+
         return true;
+    }
+
+    void turn_off_lcd(void) {
+        ledcWrite(COFFEE_DRV_BACKLIGHT_CH, 0);
+    }
+
+    void turn_on_lcd(void) {
+        ledcWrite(COFFEE_DRV_BACKLIGHT_CH, COFFEE_DRV_BRIGHTNESS);
     }
 
     static void turn_on_bl(void)
     {
-        ledcSetup(1, 300, 8);
+        ledcSetup(COFFEE_DRV_BACKLIGHT_CH, 300, 8);
 
-        ledcAttachPin(COFFEE_DRV_BACKLIGHT, 1);
+        ledcAttachPin(COFFEE_DRV_BACKLIGHT, COFFEE_DRV_BACKLIGHT_CH);
         
-        ledcWrite(1, 0);
+        ledcWrite(COFFEE_DRV_BACKLIGHT_CH, 0);
         delay(500);
         
-        ledcWrite(1, COFFEE_DRV_BRIGHTNESS);
+        ledcWrite(COFFEE_DRV_BACKLIGHT_CH, COFFEE_DRV_BRIGHTNESS);
 
         lcd.fillScreen(TFT_BLACK);
     }

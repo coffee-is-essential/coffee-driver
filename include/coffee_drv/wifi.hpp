@@ -1,6 +1,9 @@
 #ifndef COFFEE_DRV_WIFI_HPP
 #define COFFEE_DRV_WIFI_HPP
 
+#include <cstdint>
+#include <string>
+
 #include <Arduino.h>
 #include <WiFi.h>
 
@@ -20,6 +23,6 @@ namespace coffee_drv {
      * 
      *                 password for Wi-Fi connection
      */
-    bool init_wifi_sta(const char* ssid, const char* password);
+    bool init_wifi_sta(std::string ssid, std::string password);
 }
 #endif
