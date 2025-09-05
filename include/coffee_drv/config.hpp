@@ -31,7 +31,7 @@
  * 
  *        a larger number of lines per buffer can yield smoother updates, but increases RAM usage
  */
-#define COFFEE_DRV_DISP_BUF_LINES 50
+#define COFFEE_DRV_DISP_BUF_LINES 32
 
 /**
  * @def COFFEE_DRV_BRIGHTNESS

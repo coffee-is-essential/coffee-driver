@@ -123,6 +123,8 @@ The following libraries must be included to use this library
 
   Arduino core for the ESP32
 
+  Version 2.0.15
+
   LGPL-2.1 license
 
   [https://github.com/espressif/arduino-esp32](https://github.com/espressif/arduino-esp32)
@@ -130,6 +132,8 @@ The following libraries must be included to use this library
 - **TAMCTec/gt911-arduino**
 
   Arduino library for GT911
+
+  Version 1.0.2
 
   Apache-2.0 license
 
@@ -139,6 +143,8 @@ The following libraries must be included to use this library
 
   SPI LCD graphics library for ESP32 (ESP-IDF/ArduinoESP32) / ESP8266 (ArduinoESP8266) / SAMD51(Seeed ArduinoSAMD51)
 
+  Version 1.1.8
+
   FreeBSD license
 
   [https://github.com/lovyan03/LovyanGFX](https://github.com/lovyan03/LovyanGFX)
@@ -146,6 +152,8 @@ The following libraries must be included to use this library
 - **lvgl/lvgl**
 
   Embedded graphics library to create beautiful UIs for any MCU, MPU and display type.
+
+  Version 8.3.3
 
   MIT license
 
